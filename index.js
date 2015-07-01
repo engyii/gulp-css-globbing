@@ -3,6 +3,7 @@
 var gutil = require('gulp-util');
 var glob = require('glob');
 var map = require('vinyl-map');
+var os = require('os');
 
 var path = require('path');
 
@@ -107,10 +108,10 @@ var cssGlobbingPlugin = function(options) {
         });
 
         if (files.length) {
-          result = '';
+          result = os.EOL;
 
           files.forEach(function(foundFilePath) {
-            result += '@import ' + prefix + foundFilePath + suffix + semicolon + '\n';
+            result += '@import ' + prefix + foundFilePath + suffix + semicolon + os.EOL;
           });
         } else {
           result = '/* No files to import found in ' + filePattern.replace(/\//g,'\//') + ' */';
